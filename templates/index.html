@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Card Fraud Detection</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('static/images/ccfdhome.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      margin-top: 50px;
+    }
+
+    .input-group {
+      margin-bottom: 10px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .button_cont {
+      text-align: center;
+    }
+
+    .button_css {
+      color: #fff;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 10px 20px;
+      background: #3498db;
+      border-radius: 5px;
+      border: none;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .button_css:hover {
+      background: #2980b9;
+    }
+
+    .result {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 24px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .result.fraud {
+      background-color: #d9534f; /* Red background for fraud transaction */
+      color: white;
+    }
+
+    .result.normal {
+      background-color: #5cb85c; /* Green background for normal transaction */
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <img src="static/images/banner.png" alt="banner" style="width: 100%; border: 1px solid #ccc; border-radius: 10px;">
+  <form action="{{ url_for('predict')}}" method="post">
+    <h1 style="text-align: center; margin-top: 20px;">Enter the Values of Transaction Features</h1>
+
+    <div class="input-group">
+      <label for="time">Time:</label>
+      <input type="text" name="Time" placeholder="Time" required>
+    </div>
+
+    <div class="input-group">
+      <label for="v1">V1:</label>
+      <input type="text" name="V1" placeholder="V1" required>
+    </div>
+
+    <div class="input-group">
+      <label for="v2">V2:</label>
+      <input type="text" name="V2" placeholder="V2" required>
+    </div>
+
+    <div class="input-group">
+        <label for="v3">V3:</label>
+        <input type="text" name="V3" placeholder="V3" required>
+    </div>
+
+    <div class="input-group">
+      <label for="v4">V4:</label>
+      <input type="text" name="V4" placeholder="V4" required>
+    </div>
+
+    <div class="input-group">
+      <label for="v5">V5:</label>
+      <input type="text" name="V5" placeholder="V5" required>
+    </div>
+
+    <div class="input-group">
+        <label for="v6">V6:</label>
+        <input type="text" name="V6" placeholder="V6" required>
+    </div>
+    
+    <div class="input-group">
+        <label for="v7">V7:</label>
+        <input type="text" name="V7" placeholder="V7" required>
+    </div>
+
+    <div class="input-group">
+        <label for="v8">V8:</label>
+        <input type="text" name="V8" placeholder="V8" required>
+    </div>
+
+    <div class="input-group">
+        <label for="v9">V9:</label>
+        <input type="text" name="V9" placeholder="V9" required>
+    </div>
+
+    <div class="input-group">
+        <label for="v10">V10:</label>
+        <input type="text" name="V10" placeholder="V10" required>
+    </div>
+
+    <div class="input-group">
+        <label for="v11">V11:</label>
+        <input type="text" name="V11" placeholder="V11" required>
+    </div>
+
+    <div class="input-group">
+        <label for="v12">V12:</label>
+        <input type="text" name="V12" placeholder="V12" required>
+    </div>
+
+    <div class="input-group">
+        <label for="v13">V13:</label>
+        <input type="text" name="V13" placeholder="V13" required>
+    </div>
+      
+    <div class="input-group">
+        <label for="v14">V14:</label>
+        <input type="text" name="V14" placeholder="V14" required>
+    </div>
+      
+    <div class="input-group">
+        <label for="v15">V15:</label>
+        <input type="text" name="V15" placeholder="V15" required>
+    </div>
+      
+    <div class="input-group">
+        <label for="v16">V16:</label>
+        <input type="text" name="V16" placeholder="V16" required>
+    </div>
+      
+    <div class="input-group">
+        <label for="v17">V17:</label>
+        <input type="text" name="V17" placeholder="V17" required>
+    </div>
+      
+    <div class="input-group">
+        <label for="v18">V18:</label>
+        <input type="text" name="V18" placeholder="V18" required>
+    </div>
+      
+    <div class="input-group">
+        <label for="v19">V19:</label>
+        <input type="text" name="V19" placeholder="V19" required>
+    </div>
+      
+    <div class="input-group">
+        <label for="v20">V20:</label>
+        <input type="text" name="V20" placeholder="V20" required>
+    </div>
+      
+    <div class="input-group">
+        <label for="v21">V21:</label>
+        <input type="text" name="V21" placeholder="V21" required>
+    </div>
+      
+    <div class="input-group">
+        <label for="v22">V22:</label>
+        <input type="text" name="V22" placeholder="V22" required>
+    </div>
+      
+    <div class="input-group">
+        <label for="v23">V23:</label>
+        <input type="text" name="V23" placeholder="V23" required>
+    </div>
+      
+    <div class="input-group">
+        <label for="v24">V24:</label>
+        <input type="text" name="V24" placeholder="V24" required>
+    </div>
+      
+    <div class="input-group">
+        <label for="v25">V25:</label>
+        <input type="text" name="V25" placeholder="V25" required>
+    </div>
+      
+    <div class="input-group">
+        <label for="v26">V26:</label>
+        <input type="text" name="V26" placeholder="V26" required>
+    </div>
+      
+    <div class="input-group">
+        <label for="v27">V27:</label>
+        <input type="text" name="V27" placeholder="V27" required>
+    </div>
+
+    <div class="input-group">
+      <label for="v28">V28:</label>
+      <input type="text" name="V28" placeholder="V28" required>
+    </div>
+
+    <div class="input-group">
+      <label for="amount">Amount:</label>
+      <input type="text" name="Amount" placeholder="Amount" required>
+    </div>
+
+    <div class="button_cont">
+      <button type="submit" class="button_css">Predict Transaction Type</button>
+    </div>
+  </form>
+
+  <div class="result">
+    <h1>{{ prediction_text }}</h1>
+  </div>
+</div>
+
+</body>
+</html>
